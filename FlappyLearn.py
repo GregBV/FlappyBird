@@ -7,7 +7,7 @@ import Pipe
 import numpy as np
 import time
 from math import ceil
-import Base
+from Base import *
 from copy import deepcopy
 
 '''SCREEN_WIDTH = 800
@@ -22,15 +22,6 @@ R_BIRD = 20
 SPRITE_SCALING_PIPE = PIPE_WIDTH/26
 SPRITE_SCALING_BIRD = (2*R_BIRD)/1024
 '''
-SCREEN_WIDTH = 500
-SCREEN_HEIGHT = 700
-GRAVITY = 0.7
-PIPE_SPEED = 3
-PIPE_WIDTH = 70
-GAP_HEIGHT = 200
-JUMP_SPEED = 8
-X_BIRD = 100
-R_BIRD = 30
 
 SPRITE_SCALING_PIPE = PIPE_WIDTH/26
 SPRITE_SCALING_BIRD = (2*R_BIRD)/1024
@@ -48,7 +39,7 @@ KEEP_RATE = 0.3
 
         
 
-class Learn(Base.Base):
+class Learn(Base):
     """ Main application class. """
 
     def __init__(self, width, height):

@@ -34,18 +34,18 @@ class Base(arcade.Window):
 
 
         self.list_birds = [Bird.Bird() for k in range(n_bird)]
-        self.sprite_list_birds = arcade.SpriteList()
+        self.sprite_list_birds = arcade.SpriteList(use_spatial_hash=False)
         for bird in self.list_birds:
             self.sprite_list_birds.append(bird.sprite)
 
-        self.sprite_list_ground = arcade.SpriteList()
+        self.sprite_list_ground = arcade.SpriteList(use_spatial_hash=False)
         for k in range(ceil(SCREEN_WIDTH/80)+1):
             self.sprite_list_ground.append(arcade.Sprite("sprites/city2.png", 4))
             self.sprite_list_ground[-1].center_x = GROUND_HEIGHT*k
             self.sprite_list_ground[-1].center_y = GROUND_HEIGHT//2
 
         self.list_pipes = [Pipe.Pipe()]
-        self.sprite_list_pipes = arcade.SpriteList()
+        self.sprite_list_pipes = arcade.SpriteList(use_spatial_hash=False)
         for p in self.list_pipes:
             self.sprite_list_pipes.append(p.sprite_up)
             self.sprite_list_pipes.append(p.sprite_down)
@@ -89,12 +89,12 @@ class Base(arcade.Window):
 
     def restart(self, n_bird):
         self.list_birds = [Bird.Bird() for k in range(n_bird)]
-        self.sprite_list_birds = arcade.SpriteList()
+        self.sprite_list_birds = arcade.SpriteList(use_spatial_hash=False)
         for bird in self.list_birds:
             self.sprite_list_birds.append(bird.sprite)
         
         self.list_pipes = [Pipe.Pipe()]
-        self.sprite_list_pipes = arcade.SpriteList()
+        self.sprite_list_pipes = arcade.SpriteList(use_spatial_hash=False)
         for p in self.list_pipes:
             self.sprite_list_pipes.append(p.sprite_up)
             self.sprite_list_pipes.append(p.sprite_down)

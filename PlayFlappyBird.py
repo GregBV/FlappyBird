@@ -5,21 +5,9 @@ import Bird
 import Pipe
 import numpy as np
 from math import ceil
-import Base
+from Base import *
 
-SCREEN_WIDTH = 500
-SCREEN_HEIGHT = 700
-GRAVITY = 0.7
-PIPE_SPEED = 3
-PIPE_WIDTH = 70
-GAP_HEIGHT = 200
-JUMP_SPEED = 8
-X_BIRD = 100
-R_BIRD = 30
-GROUND_HEIGHT = 80
 
-SPRITE_SCALING_PIPE = PIPE_WIDTH/26
-SPRITE_SCALING_BIRD = 1
 
 class GameStates(Enum):
     GAME_OVER = 0
@@ -27,7 +15,7 @@ class GameStates(Enum):
     END = 2
     START = 3
 
-class Game(Base.Base):
+class Game(Base):
     """ Main application class. """
 
     def __init__(self, width, height):
