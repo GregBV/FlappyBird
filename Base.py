@@ -33,7 +33,7 @@ class Base(arcade.Window):
         self.background = arcade.load_texture("sprites/background.png")
 
 
-        self.list_birds = [Bird.Bird(X_BIRD, SCREEN_HEIGHT//2, R_BIRD, SPRITE_SCALING_BIRD) for k in range(n_bird)]
+        self.list_birds = [Bird.Bird() for k in range(n_bird)]
         self.sprite_list_birds = arcade.SpriteList()
         for bird in self.list_birds:
             self.sprite_list_birds.append(bird.sprite)
@@ -44,7 +44,7 @@ class Base(arcade.Window):
             self.sprite_list_ground[-1].center_x = GROUND_HEIGHT*k
             self.sprite_list_ground[-1].center_y = GROUND_HEIGHT//2
 
-        self.list_pipes = [Pipe.Pipe(SCREEN_WIDTH, SCREEN_HEIGHT, PIPE_WIDTH, PIPE_SPEED, GAP_HEIGHT, SPRITE_SCALING_PIPE)]
+        self.list_pipes = [Pipe.Pipe()]
         self.sprite_list_pipes = arcade.SpriteList()
         for p in self.list_pipes:
             self.sprite_list_pipes.append(p.sprite_up)
@@ -64,7 +64,7 @@ class Base(arcade.Window):
 
     def updatePipes(self):
         if(abs(self.list_pipes[-1].x -PIPE_WIDTH//2 - SCREEN_WIDTH//2)<PIPE_SPEED):
-                self.list_pipes.append(Pipe.Pipe(SCREEN_WIDTH, SCREEN_HEIGHT, PIPE_WIDTH, PIPE_SPEED, GAP_HEIGHT, SPRITE_SCALING_PIPE))
+                self.list_pipes.append(Pipe.Pipe())
                 self.sprite_list_pipes.append(self.list_pipes[-1].sprite_up)
                 self.sprite_list_pipes.append(self.list_pipes[-1].sprite_down)
         
@@ -86,3 +86,16 @@ class Base(arcade.Window):
         for s in self.sprite_list_ground:
             s.center_x -= PIPE_SPEED
         self.updateGround()
+
+    def restart(self, n_bird):
+        self.list_birds = [Bird.Bird() for k in range(n_bird)]
+        self.sprite_list_birds = arcade.SpriteList()
+        for bird in self.list_birds:
+            self.sprite_list_birds.append(bird.sprite)
+        
+        self.list_pipes = [Pipe.Pipe()]
+        self.sprite_list_pipes = arcade.SpriteList()
+        for p in self.list_pipes:
+            self.sprite_list_pipes.append(p.sprite_up)
+            self.sprite_list_pipes.append(p.sprite_down)
+        self.score = 0

@@ -27,11 +27,11 @@ class GameStates(Enum):
     END = 2
     START = 3
 
-class Game(Base):
+class Game(Base.Base):
     """ Main application class. """
 
     def __init__(self, width, height):
-        Base.__init__(width, height, 1)
+        super().__init__(width, height, 1)
         self.state = GameStates.START
         # Set constant for bird
         
@@ -80,24 +80,11 @@ class Game(Base):
                 self.gameOverScreen()
 
 
-    def restart(self):
-        self.list_birds = [Bird.Bird(X_BIRD, SCREEN_HEIGHT//2, R_BIRD, SPRITE_SCALING_BIRD) for k in range(n_bird)]
-        self.sprite_list_birds = arcade.SpriteList()
-        for bird in self.list_birds:
-            self.sprite_list_birds.append(bird.sprite)
-        
-        self.list_pipes = [Pipe.Pipe(SCREEN_WIDTH, SCREEN_HEIGHT, PIPE_WIDTH, PIPE_SPEED, GAP_HEIGHT, SPRITE_SCALING_PIPE)]
-        self.sprite_list_pipes = arcade.SpriteList()
-        for p in self.list_pipes:
-            self.sprite_list_pipes.append(p.sprite_up)
-            self.sprite_list_pipes.append(p.sprite_down)
 
-        self.bird.v = 12
-        self.state = GameStates.RUNNING
         
     def on_key_press(self, key, modifiers):
         if(key == arcade.key.SPACE and self.state == GameStates.RUNNING):
-            self.bird.v = 12
+            self.list_birds[0].v = 12
         if(key == arcade.key.SPACE and (self.state == GameStates.START or self.state == GameStates.GAME_OVER)):
             self.restart()
             
@@ -117,7 +104,7 @@ class Game(Base):
         self.sprite = bird.dead_sprite
         bird.dead_sprite.center_x = bird.x
         bird.dead_sprite.center_y = bird.y
-        self.sprite_list_birds.append(self.bird.dead_sprite)
+        self.sprite_list_birds.append(self.list_birds[0].dead_sprite)
         self.state = GameStates.END
 
     def startAnimation(self, i):
@@ -126,7 +113,10 @@ class Game(Base):
         bird.y += k
         bird.sprite.center_y = bird.y
 
-
+    def restart(self):
+        super().restart(1)
+        self.list_birds[0].v = 12
+        self.state = GameStates.RUNNING
 
     def update(self, delta_time):
         """ All the logic to move, and the game logic goes here. """
@@ -146,7 +136,7 @@ class Game(Base):
                 pass
             self.updateScore()
             
-            bird.move(self.list_pipes, 0, JUMP_SPEED, GRAVITY, GAP_HEIGHT, SCREEN_HEIGHT)
+            bird.move(self.list_pipes, 0)
             # manage pipes
             self.moveGround()
             self.updatePipes()
@@ -157,7 +147,7 @@ class Game(Base):
 
 
 def main():
-    MyGame(SCREEN_WIDTH, SCREEN_HEIGHT)
+    Game(SCREEN_WIDTH, SCREEN_HEIGHT)
     arcade.run()
 
 

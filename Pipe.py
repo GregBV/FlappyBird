@@ -1,24 +1,23 @@
-import FlappyLearn
-import Game
+import Base
 import random
 import arcade
 
 
 
 class Pipe:
-    def __init__(self, screen_width, screen_height, pipe_width, pipe_speed, gap_height, SPRITE_SCALING_PIPE):
-        self.x = screen_width + pipe_width//2
-        self.y = random.randint(screen_height//6, 2*screen_height//6) - gap_height//4
-        self.w = pipe_width
+    def __init__(self):
+        self.x = Base.SCREEN_WIDTH + Base.PIPE_WIDTH//2
+        self.y = random.randint(Base.SCREEN_HEIGHT//6, 2*Base.SCREEN_HEIGHT//6) - Base.GAP_HEIGHT//4
+        self.w = Base.PIPE_WIDTH
         self.h = 2*self.y
-        self.v = pipe_speed
-        self.sprite_down = arcade.Sprite("sprites/pipe_down.png", SPRITE_SCALING_PIPE)
+        self.v = Base.PIPE_SPEED
+        self.sprite_down = arcade.Sprite("sprites/pipe_down.png", Base.SPRITE_SCALING_PIPE)
         self.sprite_down.center_x = self.x
-        self.sprite_down.center_y = -SPRITE_SCALING_PIPE*400 + self.h
+        self.sprite_down.center_y = -Base.SPRITE_SCALING_PIPE*400 + self.h
 
-        self.sprite_up = arcade.Sprite("sprites/pipe_up.png", SPRITE_SCALING_PIPE)
+        self.sprite_up = arcade.Sprite("sprites/pipe_up.png", Base.SPRITE_SCALING_PIPE)
         self.sprite_up.center_x = self.x
-        self.sprite_up.center_y = gap_height + self.h + SPRITE_SCALING_PIPE*400
+        self.sprite_up.center_y = Base.GAP_HEIGHT + self.h + Base.SPRITE_SCALING_PIPE*400
 
 
     def move(self):
