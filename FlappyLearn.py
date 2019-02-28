@@ -1,27 +1,12 @@
-import arcade
 from enum import Enum
 import random
 import NeuralNetwork
-import Bird
-import Pipe
 import numpy as np
 import time
 from math import ceil
 from Base import *
 from copy import deepcopy
 
-'''SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 700
-GRAVITY = 0.7
-PIPE_SPEED = 3
-PIPE_WIDTH = 50
-GAP_HEIGHT = 165
-JUMP_SPEED = 10
-X_BIRD = 100
-R_BIRD = 20
-SPRITE_SCALING_PIPE = PIPE_WIDTH/26
-SPRITE_SCALING_BIRD = (2*R_BIRD)/1024
-'''
 
 SPRITE_SCALING_PIPE = PIPE_WIDTH/26
 SPRITE_SCALING_BIRD = (2*R_BIRD)/1024

@@ -1,8 +1,5 @@
-import arcade
 from enum import Enum
 import random
-import Bird
-import Pipe
 import numpy as np
 from math import ceil
 from Base import *
