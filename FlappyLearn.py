@@ -152,9 +152,7 @@ class Learn(Base):
         self.updateScore()   
         self.updateBirds()
         self.updatePipes()
-        self.moveGround()
-        for pipe in self.list_pipes:
-            pipe.move()          
+        self.moveGround()         
         pass
 
 def main():

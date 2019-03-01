@@ -69,7 +69,7 @@ class Game(Base):
         
     def on_key_press(self, key, modifiers):
         if(key == arcade.key.SPACE and self.state == GameStates.RUNNING):
-            self.list_birds[0].v = 12
+            self.list_birds[0].v = JUMP_SPEED
         if(key == arcade.key.SPACE and (self.state == GameStates.START or self.state == GameStates.GAME_OVER)):
             self.restart()
             
@@ -85,7 +85,7 @@ class Game(Base):
     
     def startEndAnimation(self):
         bird = self.list_birds[0]
-        bird.v = 12
+        bird.v = JUMP_SPEED
         self.sprite = bird.dead_sprite
         bird.dead_sprite.center_x = bird.x
         bird.dead_sprite.center_y = bird.y
@@ -100,7 +100,7 @@ class Game(Base):
 
     def restart(self):
         super().restart(1)
-        self.list_birds[0].v = 12
+        self.list_birds[0].v = JUMP_SPEED
         self.state = GameStates.RUNNING
 
     def update(self, delta_time):
@@ -125,9 +125,7 @@ class Game(Base):
             # manage pipes
             self.moveGround()
             self.updatePipes()
-            for pipe in self.list_pipes:
-                pipe.move()   
-
+            
         pass
 
 

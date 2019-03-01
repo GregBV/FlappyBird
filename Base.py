@@ -10,7 +10,7 @@ GRAVITY = 0.7
 PIPE_SPEED = 3
 PIPE_WIDTH = 70
 GAP_HEIGHT = 200
-JUMP_SPEED = 8
+JUMP_SPEED = 11
 X_BIRD = 100
 R_BIRD = 30
 GROUND_HEIGHT = 80
@@ -68,7 +68,7 @@ class Bird:
         if(key == 1):
             self.v = JUMP_SPEED
         self.v -= GRAVITY
-        self.y += round(self.v)
+        self.y += self.v
         self.sprite.center_y = self.y
         self.sprite.angle = 0
         if(self.v<0):
@@ -128,6 +128,8 @@ class Base(arcade.Window):
         
         if(self.list_pipes[0].x <= -PIPE_WIDTH//2):
             self.list_pipes.pop(0)
+        for pipe in self.list_pipes:
+            pipe.move()   
 
     def updateScore(self):
         if(abs(X_BIRD - self.list_pipes[0].x)<PIPE_SPEED):
