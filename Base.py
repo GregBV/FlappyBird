@@ -129,7 +129,7 @@ class Base(arcade.Window):
         if(self.list_pipes[0].x <= -PIPE_WIDTH//2):
             self.list_pipes.pop(0)
         for pipe in self.list_pipes:
-            pipe.move()   
+            pipe.move()
 
     def updateScore(self):
         if(abs(X_BIRD - self.list_pipes[0].x)<PIPE_SPEED):

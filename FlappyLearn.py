@@ -143,7 +143,7 @@ class Learn(Base):
         self.draw_new_generation()
         
     def updateScore(self):
-        if(abs(X_BIRD - self.list_pipes[0].x - PIPE_WIDTH//2)<PIPE_SPEED):
+        if(self.current_pipe.x + PIPE_WIDTH//2 - X_BIRD + R_BIRD < PIPE_SPEED):
             self.current_pipe = self.list_pipes[1]
             self.score+=1
 
